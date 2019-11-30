@@ -1,24 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+/* L import des pages*/
+import Home from "./pages/Home";
+import Rooms from "./pages/Rooms";
+import Error from "./pages/Error";
+import SingleRoom from "./pages/SingleRoom";
+
+/* L import de react router dom*/
+import {Route, Switch } from "react-router-dom";
+
+/* L import des components  */
+import Navbar from './components/Navbar';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar/>
+      <Switch>
+        <Route exact path="/" component={Home}/>
+        <Route exact path="/rooms" component={Rooms}/>
+        <Route exact path="/rooms/:slug" component={SingleRoom}/> {/* le slug est une variable qui permet d'appler des pages specifique en fonction de la catagorie de la chambre */}
+        <Route component={Error}/>
+      </Switch>
     </div>
   );
 }
